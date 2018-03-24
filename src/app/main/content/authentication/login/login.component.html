@@ -30,7 +30,7 @@
             <form name="loginForm" (submit)="login()" [formGroup]="loginForm" novalidate>
 
                 <mat-form-field>
-                    <input matInput placeholder="Usuário" formControlName="user_name">
+                    <input matInput placeholder="Usuário" formControlName="email">
                     <mat-error *ngIf="loginFormErrors.email.required">
                         Usuário é obrigatório
                     </mat-error>

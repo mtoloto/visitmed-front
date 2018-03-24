@@ -33,8 +33,20 @@ export class HttpClientVisitMed {
         });
     }
 
+    put(method, body) {
+        return new Promise((resolve, reject) => {
+            this.http.put(this.global.api + method, JSON.stringify(body), { headers: this.headers, observe: "response" })
+                .subscribe((res: HttpResponse<any>) => {
+                    resolve(res);
+                }, (err) => {
+                    reject(err);
+                });
+        });
+    }
+
+
     get(method) {
-        return new Promise((resolve, reject) => { 
+        return new Promise((resolve, reject) => {
             var token = this.auth.getToken();
             this.http.get(this.global.api + method, { headers: this.headers, observe: "response" })
                 .subscribe((res: HttpResponse<any>) => {

@@ -17,7 +17,7 @@ export class Address {
 
         address = address || {};
 
-        this.id = address.id || FuseUtils.generateGUID();
+        this.id = address.id || '';
         this.name = address.name || '';
         this.zipCode = address.zipCode || '';
         this.street = address.street || '';

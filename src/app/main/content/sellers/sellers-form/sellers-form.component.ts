@@ -49,9 +49,9 @@ export class SellersContactFormDialogComponent implements OnInit
     {
         return this.formBuilder.group({
             id      : [this.contact.id],
-            name    : [this.contact.name],
-            lastName: [this.contact.lastName],
-            avatar  : [this.contact.avatar]
+            first_name    : [this.contact.first_name],
+            last_name: [this.contact.last_name],
+            photo_url  : [this.contact.photo_url]
         });
     }
 }

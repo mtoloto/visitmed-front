@@ -8,8 +8,8 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 import { Subscription } from 'rxjs/Subscription';
-import { Seller } from './seller.model';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Seller } from '../sellers.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FuseUtils } from '../../../../core/fuseUtils';
 import { MatSnackBar } from '@angular/material';
 import { Location } from '@angular/common';
@@ -44,7 +44,6 @@ export class SellerComponent implements OnInit, OnDestroy {
             this.sellerService.onSellerChanged
                 .subscribe(seller => {
 
-
                     if (seller) {
                         this.seller = new Seller(seller);
                         this.pageType = 'edit';
@@ -59,22 +58,26 @@ export class SellerComponent implements OnInit, OnDestroy {
     }
 
     createSellerForm() {
-
         return this.formBuilder.group({
             id: [this.seller.id],
-            avatar: [this.seller.avatar],
-            name: [this.seller.name],
+            photo_url: [this.seller.photo_url],
+            first_name: [this.seller.first_name],
             last_name: [this.seller.last_name],
             rg: [this.seller.rg],
             cpf: [this.seller.cpf],
+            email: [this.seller.Contact.email],
             address: this.formBuilder.group(this.seller.Address),
-            contact: this.formBuilder.group(this.seller.Contact)
+            contact: this.formBuilder.group(this.seller.Contact),
+            user: this.formBuilder.group({
+                email: [this.seller.User.email]
+            })
         });
     }
 
     saveSeller() {
         const data = this.sellerForm.getRawValue();
-        data.handle = FuseUtils.handleize(data.name);
+        console.log(data);
+        //data.handle = FuseUtils.handleize(data.name);
         this.sellerService.saveSeller(data)
             .then(() => {
 
@@ -84,6 +87,7 @@ export class SellerComponent implements OnInit, OnDestroy {
                 // Show the success message
                 this.snackBar.open('Seller saved', 'OK', {
                     verticalPosition: 'top',
+                    horizontalPosition: 'right',
                     duration: 2000
                 });
             });
@@ -108,9 +112,9 @@ export class SellerComponent implements OnInit, OnDestroy {
 
     addSeller() {
         const data = this.sellerForm.getRawValue();
-        data.handle = FuseUtils.handleize(data.name);
+        // data.handle = FuseUtils.handleize(data.name);
         this.sellerService.addSeller(data)
-            .then(() => {
+            .then((res) => {
 
                 // Trigger the subscription with new data
                 this.sellerService.onSellerChanged.next(data);
@@ -122,7 +126,9 @@ export class SellerComponent implements OnInit, OnDestroy {
                 });
 
                 // Change the location with new one
-                this.location.go('sellers/' + this.seller.id + '/' + this.seller.handle);
+                this.location.go('sellers/' + this.seller.id);
+            }, (err) => {
+
             });
     }
 

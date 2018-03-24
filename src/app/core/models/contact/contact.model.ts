@@ -15,7 +15,7 @@ export class Contact {
 
         contact = contact || {};
 
-        this.id = contact.id || FuseUtils.generateGUID();
+        this.id = contact.id || '';
         this.email = contact.email || '';
         this.telphone = contact.telphone || '';
         this.celphone = contact.celphone || '';

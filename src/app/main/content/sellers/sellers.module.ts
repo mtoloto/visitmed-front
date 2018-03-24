@@ -10,6 +10,7 @@ import { SellersContactFormDialogComponent } from './sellers-form/sellers-form.c
 import { SellerService } from './seller/seller.service';
 import { SellerComponent } from './seller/seller.component';
 import { ZipCodeService } from '../../../core/services/zipCode.service';
+import { HttpClientVisitMed } from '../../../core/services/http.client/http.client';
 
 const routes: Routes = [
     {
@@ -44,7 +45,8 @@ const routes: Routes = [
     providers: [
         SellersService,
         SellerService,
-        ZipCodeService
+        ZipCodeService,
+        HttpClientVisitMed
     ],
     entryComponents: [SellersContactFormDialogComponent]
 })

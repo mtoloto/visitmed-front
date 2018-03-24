@@ -23,9 +23,10 @@ import { FuseTranslationLoaderService } from '../services/translation-loader.ser
 import { CookieService } from 'ngx-cookie-service';
 import { TranslateModule } from '@ngx-translate/core';
 import { ChartsModule } from 'ng2-charts';
+import { KzMaskDirective } from '../directives/mask/mask';
 
 @NgModule({
-    declarations   : [
+    declarations: [
         FuseMatSidenavHelperDirective,
         FuseMatSidenavTogglerDirective,
         FuseConfirmDialogComponent,
@@ -33,9 +34,10 @@ import { ChartsModule } from 'ng2-charts';
         FuseHighlightComponent,
         FuseIfOnDomDirective,
         FusePerfectScrollbarDirective,
-        FuseMaterialColorPickerComponent
+        FuseMaterialColorPickerComponent,
+        KzMaskDirective
     ],
-    imports        : [
+    imports: [
         FlexLayoutModule,
         MaterialModule,
         CommonModule,
@@ -47,7 +49,7 @@ import { ChartsModule } from 'ng2-charts';
         NgxDatatableModule,
         ChartsModule
     ],
-    exports        : [
+    exports: [
         FlexLayoutModule,
         MaterialModule,
         CommonModule,
@@ -62,7 +64,8 @@ import { ChartsModule } from 'ng2-charts';
         ColorPickerModule,
         NgxDnDModule,
         NgxDatatableModule,
-        FuseIfOnDomDirective,
+        FuseIfOnDomDirective, 
+        KzMaskDirective,
         FuseMaterialColorPickerComponent,
         TranslateModule,
         ChartsModule
@@ -70,7 +73,7 @@ import { ChartsModule } from 'ng2-charts';
     entryComponents: [
         FuseConfirmDialogComponent
     ],
-    providers      : [
+    providers: [
         CookieService,
         FuseMatchMedia,
         FuseNavbarVerticalService,
@@ -79,7 +82,6 @@ import { ChartsModule } from 'ng2-charts';
     ]
 })
 
-export class SharedModule
-{
+export class SharedModule {
 
 }

@@ -54,11 +54,11 @@ export class AuthService {
 
     try {
 
-      const decoded = decode(token);
-      if (decoded.exp === undefined) return null;
+      const decoded = decode(token);  
+      if (decoded.exp === undefined) return null; 
 
       var user = new userModel();
-      user.username = decoded.userName;
+      user.username = decoded.email;
 
       return user;
 
@@ -72,7 +72,7 @@ export class AuthService {
   isTokenExpired(token?: string): boolean {
     if (!token) token = this.getToken();
     if (!token) return true;
-    try { 
+    try {
       const date = this.getTokenExpirationDate(token);
       if (date === undefined) return false;
       return !(date.valueOf() > new Date().valueOf());

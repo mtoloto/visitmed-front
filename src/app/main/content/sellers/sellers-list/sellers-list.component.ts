@@ -22,7 +22,7 @@ export class SellersListComponent implements OnInit, OnDestroy {
     contacts: any;
     user: any;
     dataSource: FilesDataSource | null;
-    displayedColumns = ['checkbox', 'avatar', 'name', 'email', 'phone', 'buttons'];
+    displayedColumns = ['checkbox', 'photo_url', 'name', 'email', 'rg', 'cpf', 'buttons'];
     selectedContacts: any[];
     checkboxes: {};
 
@@ -86,7 +86,7 @@ export class SellersListComponent implements OnInit, OnDestroy {
                 contact: contact,
                 action: 'edit'
             }
-        }); 
+        });
 
 
         this.dialogRef.afterClosed()

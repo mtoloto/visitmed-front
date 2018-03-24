@@ -35,8 +35,8 @@ export class FuseToolbarComponent {
     ) {
 
         this.initToolBarModel();
-        this.user = this.auth.getUser();
-
+        this.user = this.auth.getUser(); 
+        
         if (this.user != null) {
             this.toolbar.username = this.user.username;
         }

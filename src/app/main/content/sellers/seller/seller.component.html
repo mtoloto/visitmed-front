@@ -24,7 +24,7 @@
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                     <div class="h2" *ngIf="pageType ==='edit'">
-                        {{seller.name}}
+                        {{seller.first_name}} {{seller.last_name}}
                     </div>
                     <div class="h2" *ngIf="pageType ==='new'">
                         New Seller
@@ -68,13 +68,34 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <mat-form-field class="w-100-p">
-                                    <input matInput name="name" formControlName="name" placeholder="Nome" required>
+                                    <input matInput name="name" formControlName="first_name" placeholder="Nome" required>
                                 </mat-form-field>
 
                                 <mat-form-field class="w-100-p">
                                     <input matInput name="last_name" formControlName="last_name" placeholder="Sobrenome" required>
                                 </mat-form-field>
 
+                                <mat-form-field class="w-100-p">
+                                    <input matInput name="rg" formControlName="rg" placeholder="RG" kzMask="99.999.999-9">
+                                </mat-form-field>
+
+                                <mat-form-field class="w-100-p">
+                                    <input matInput name="cpf" formControlName="cpf" placeholder="CPF" kzMask="999.999.999-99">
+                                </mat-form-field>
+ 
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab label="Login">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                <div fxLayout="row" formGroupName="user" fxLayoutAlign="start start" fxLayoutWrap>
+
+                                    <mat-form-field class="w-100-p">
+                                        <input matInput name="email" formControlName="email" placeholder="E-mail" required>
+                                    </mat-form-field>
+ 
+
+                                </div>
                             </div>
                         </mat-tab>
 
@@ -83,36 +104,36 @@
                                 <div fxLayout="row" formGroupName="contact" fxLayoutAlign="start start" fxLayoutWrap>
 
                                     <mat-form-field class="w-100-p">
-                                        <input matInput name="email" formControlName="email" placeholder="E-mail" required>
+                                        <input matInput name="email" formControlName="email" placeholder="E-mail">
                                     </mat-form-field>
 
                                     <mat-form-field class="w-100-p">
-                                        <input matInput name="telphone" formControlName="telphone" placeholder="Telefone" required>
+                                        <input matInput name="telphone" formControlName="telphone" placeholder="Telefone">
                                     </mat-form-field>
 
 
                                     <mat-form-field class="w-100-p">
-                                        <input matInput name="celphone" formControlName="celphone" placeholder="Celular" required>
+                                        <input matInput name="celphone" formControlName="celphone" placeholder="Celular">
                                     </mat-form-field>
 
                                     <mat-form-field class="w-100-p">
-                                        <input matInput name="whatsapp" formControlName="whatsapp" placeholder="Whats App" required>
+                                        <input matInput name="whatsapp" formControlName="whatsapp" placeholder="Whats App">
                                     </mat-form-field>
 
                                     <mat-form-field class="w-100-p">
-                                        <input matInput name="facebook" formControlName="facebook" placeholder="Facebook" required>
+                                        <input matInput name="facebook" formControlName="facebook" placeholder="Facebook">
                                     </mat-form-field>
 
                                     <mat-form-field class="w-100-p">
-                                        <input matInput name="twitter" formControlName="twitter" placeholder="Twitter" required>
+                                        <input matInput name="twitter" formControlName="twitter" placeholder="Twitter">
                                     </mat-form-field>
 
                                     <mat-form-field class="w-100-p">
-                                        <input matInput name="instagram" formControlName="instagram" placeholder="Instagram" required>
+                                        <input matInput name="instagram" formControlName="instagram" placeholder="Instagram">
                                     </mat-form-field>
 
                                     <mat-form-field class="w-100-p">
-                                        <input matInput name="linkedin" formControlName="linkedin" placeholder="LinkedIN" required>
+                                        <input matInput name="linkedin" formControlName="linkedin" placeholder="LinkedIN">
                                     </mat-form-field>
 
                                 </div>
@@ -120,43 +141,43 @@
                         </mat-tab>
 
                         <mat-tab label="Endereço">
-                            <div class="tab-content p-24" formGroupName="address" fusePerfectScrollbar> 
+                            <div class="tab-content p-24" formGroupName="address" fusePerfectScrollbar>
 
                                 <mat-form-field class="w-100-p">
-                                    <input matInput name="zipCode" (blur)="getAddress()" formControlName="zipCode" placeholder="CEP" required>
+                                    <input matInput name="zipCode" (blur)="getAddress()" formControlName="zipCode" placeholder="CEP">
                                 </mat-form-field>
 
 
                                 <mat-form-field class="w-100-p">
-                                    <input matInput name="street" formControlName="street" placeholder="Rua" required>
+                                    <input matInput name="street" formControlName="street" placeholder="Rua">
                                 </mat-form-field>
 
                                 <mat-form-field class="w-100-p">
-                                    <input matInput name="number" formControlName="number" placeholder="Número" required>
+                                    <input matInput name="number" formControlName="number" placeholder="Número">
                                 </mat-form-field>
 
                                 <mat-form-field class="w-100-p">
-                                    <input matInput name="complement" formControlName="complement" placeholder="Complemento" required>
+                                    <input matInput name="complement" formControlName="complement" placeholder="Complemento">
                                 </mat-form-field>
 
                                 <mat-form-field class="w-100-p">
-                                    <input matInput name="state" formControlName="state" placeholder="Estado" required>
+                                    <input matInput name="state" formControlName="state" placeholder="Estado">
                                 </mat-form-field>
 
                                 <mat-form-field class="w-100-p">
-                                    <input matInput name="city" formControlName="city" placeholder="Cidade" required>
+                                    <input matInput name="city" formControlName="city" placeholder="Cidade">
                                 </mat-form-field>
 
                                 <mat-form-field class="w-100-p">
-                                    <input matInput name="lat" formControlName="lat" placeholder="Latitude" required>
+                                    <input matInput name="lat" formControlName="lat" placeholder="Latitude">
                                 </mat-form-field>
 
                                 <mat-form-field class="w-100-p">
-                                    <input matInput name="long" formControlName="long" placeholder="Logitude" required>
+                                    <input matInput name="long" formControlName="long" placeholder="Logitude">
                                 </mat-form-field>
 
                             </div>
-                        </mat-tab> 
+                        </mat-tab>
 
                     </mat-tab-group>
                 </form>

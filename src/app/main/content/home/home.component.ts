@@ -4,6 +4,7 @@ import { HomeService } from './home.service';
 import { fuseAnimations } from '../../../core/animations';
 import { HttpClientVisitMed } from "../../../core/services/http.client/http.client";
 import { Company } from '../../../core/models/company';
+import { Globals } from '../../../core/global';
 
 @Component({
     selector: 'home',
@@ -20,22 +21,22 @@ export class HomeComponent {
         company: {
             id: '',
             name: 'Carregando...'
-        },
-        subsidiary:{
-            id: '',
-            name: 'Carregando...'
         }
     };
 
     constructor(
         private analyticsDashboardService: HomeService,
-        private http: HttpClientVisitMed
+        private http: HttpClientVisitMed,
+        private global: Globals
     ) {
 
-        this.http.get("home").then((res: any) => { 
-            this.home = res.body;  
+        this.http.get(this.global.company + "/home").then((res: any) => {
+            this.home = res.body;
             //console.log(this.home);
-        }, (err => { 
+        }, (err => {
+            this.home.company.name = "Falha ao buscar dados"; 
+            console.log(err);
+
         }));
 
         // Get the widgets from the service
