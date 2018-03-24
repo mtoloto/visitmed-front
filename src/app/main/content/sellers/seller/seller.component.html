@@ -1,0 +1,172 @@
+<div id="seller" class="page-layout carded fullwidth" fusePerfectScrollbar>
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="'/propagandistas'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div class="seller-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <img *ngIf="seller.avatar" [src]="seller.avatar">
+                    <img *ngIf="!seller.avatar" [src]="'assets/images/ecommerce/seller-image-placeholder.png'">
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="pageType ==='edit'">
+                        {{seller.name}}
+                    </div>
+                    <div class="h2" *ngIf="pageType ==='new'">
+                        New Seller
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>Seller Detail</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <div fxLayoutAlign="right">
+                <button mat-raised-button class="save-seller-button mat-white-bg mt-16 mt-sm-0" [disabled]="sellerForm.invalid" *ngIf="pageType ==='new'"
+                    (click)="addSeller()">
+                    <span>ADICIONAR</span>
+                </button>
+
+                <button mat-raised-button class="save-seller-button mat-red-bg mt-16 mt-sm-0 mr-8" *ngIf="pageType ==='edit'" (click)="deleteSeller()">
+                    <span>DESATIVAR</span>
+                </button>
+
+                <button mat-raised-button class="save-seller-button mat-white-bg mt-16 mt-sm-0" [disabled]="sellerForm.invalid || sellerForm.pristine"
+                    *ngIf="pageType ==='edit'" (click)="saveSeller()">
+                    <span>SALVAR</span>
+                </button>
+            </div>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <form name="sellerForm" [formGroup]="sellerForm" class="seller w-100-p" fxLayout="column" fxFlex>
+
+                    <mat-tab-group>
+
+                        <mat-tab label="Informações Básicas">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <mat-form-field class="w-100-p">
+                                    <input matInput name="name" formControlName="name" placeholder="Nome" required>
+                                </mat-form-field>
+
+                                <mat-form-field class="w-100-p">
+                                    <input matInput name="last_name" formControlName="last_name" placeholder="Sobrenome" required>
+                                </mat-form-field>
+
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab label="Contato">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                <div fxLayout="row" formGroupName="contact" fxLayoutAlign="start start" fxLayoutWrap>
+
+                                    <mat-form-field class="w-100-p">
+                                        <input matInput name="email" formControlName="email" placeholder="E-mail" required>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="w-100-p">
+                                        <input matInput name="telphone" formControlName="telphone" placeholder="Telefone" required>
+                                    </mat-form-field>
+
+
+                                    <mat-form-field class="w-100-p">
+                                        <input matInput name="celphone" formControlName="celphone" placeholder="Celular" required>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="w-100-p">
+                                        <input matInput name="whatsapp" formControlName="whatsapp" placeholder="Whats App" required>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="w-100-p">
+                                        <input matInput name="facebook" formControlName="facebook" placeholder="Facebook" required>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="w-100-p">
+                                        <input matInput name="twitter" formControlName="twitter" placeholder="Twitter" required>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="w-100-p">
+                                        <input matInput name="instagram" formControlName="instagram" placeholder="Instagram" required>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="w-100-p">
+                                        <input matInput name="linkedin" formControlName="linkedin" placeholder="LinkedIN" required>
+                                    </mat-form-field>
+
+                                </div>
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab label="Endereço">
+                            <div class="tab-content p-24" formGroupName="address" fusePerfectScrollbar> 
+
+                                <mat-form-field class="w-100-p">
+                                    <input matInput name="zipCode" (blur)="getAddress()" formControlName="zipCode" placeholder="CEP" required>
+                                </mat-form-field>
+
+
+                                <mat-form-field class="w-100-p">
+                                    <input matInput name="street" formControlName="street" placeholder="Rua" required>
+                                </mat-form-field>
+
+                                <mat-form-field class="w-100-p">
+                                    <input matInput name="number" formControlName="number" placeholder="Número" required>
+                                </mat-form-field>
+
+                                <mat-form-field class="w-100-p">
+                                    <input matInput name="complement" formControlName="complement" placeholder="Complemento" required>
+                                </mat-form-field>
+
+                                <mat-form-field class="w-100-p">
+                                    <input matInput name="state" formControlName="state" placeholder="Estado" required>
+                                </mat-form-field>
+
+                                <mat-form-field class="w-100-p">
+                                    <input matInput name="city" formControlName="city" placeholder="Cidade" required>
+                                </mat-form-field>
+
+                                <mat-form-field class="w-100-p">
+                                    <input matInput name="lat" formControlName="lat" placeholder="Latitude" required>
+                                </mat-form-field>
+
+                                <mat-form-field class="w-100-p">
+                                    <input matInput name="long" formControlName="long" placeholder="Logitude" required>
+                                </mat-form-field>
+
+                            </div>
+                        </mat-tab> 
+
+                    </mat-tab-group>
+                </form>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+</div>
